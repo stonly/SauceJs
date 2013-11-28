@@ -36,14 +36,14 @@
         $scope.loadBoard = function loadBoard(){
           return z_(arguments);
         }
-  	  	$scope.addItem = function addItem(){
-  	  		return z_(arguments);
-  	  	}
-  	  	$scope.clearBoard = function clearBoard(){
+  	$scope.addItem = function addItem(){
+  	  return z_(arguments);
+  	}
+  	$scope.clearBoard = function clearBoard(){
           return z_(arguments);
-  	  	}
-  	  	$scope.vote = function vote(){
+        }
+  	$scope.vote = function vote(){
           return z_(arguments);                
         }
 
-  	  }
+  }
