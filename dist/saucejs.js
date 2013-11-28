@@ -63,6 +63,7 @@ SauceJs.prototype = {
       if(res.val) {
         ret = res.val;
       }
+      return ret;
 
     }
 
