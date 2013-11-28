@@ -1,0 +1,55 @@
+  	  @-webkit-keyframes itemColor {
+			0% { background-color: rgba(215, 237, 216, 0.6);}
+			33% { background-color: rgba(185, 229, 187, 0.6); }
+			66% { background-color: rgba(193, 240, 195, 0.6); }
+			100% { background-color: rgba(217, 247, 218, 0.6); }
+	   }
+
+		body {
+			background-color: whitesmoke;
+		}
+
+		.container {
+			background-color: white; 
+		}
+
+
+		.items {
+			 height: 100%;
+			 padding-top: .75px; 
+			 padding-left: 15px; 
+			 padding-right: 10px; 
+		}
+
+		.itemstop {
+			 padding-top: .75px; 
+			 padding-left: 15px; 
+		}
+
+		.itemstop {  -webkit-animation: itemColor 1s infinite alternate; }
+
+		.vote {
+			padding-left:10px;
+		}
+
+		.vote-down {
+			color: lightcoral;
+		}
+
+		.vote-down:hover {
+			color:red !important;
+		}
+
+		.vote-up:hover {
+			color:blue !important;
+		}
+
+		.vote:active {
+			color:lightblue;
+		}
+
+
+  	  	ol.linenums {
+  	  		margin-left: 0px !important;
+  	  		padding-left: 40px !important;
+  	  	}

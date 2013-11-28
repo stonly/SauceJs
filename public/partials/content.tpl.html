@@ -1,0 +1,48 @@
+      <div class="row">
+        <div class="col-lg-6">
+          <span id='title'><h2>SauceJs Demo</h2></span>
+          
+          <span ng-hide="board">
+            <form ng-submit="loadBoard(boardName, boards)">
+            <input type="text" placeholder="Board Name" ng-model="boardName" / > &nbsp; <button class="btn btn-success" >Load Todo List</button>
+          </form>
+          </span>
+          <hr>
+          <span ng-hide="board">
+            <h3> Start by typing a name for a new or existing Todo list. </h3>
+            <br>
+
+          </span>
+          <span ng-hide="!board">            
+          <h3>{{boards[board].name}} Board <button class="btn btn-xs " ng-click="clearBoard()">change board</button></h3>
+          <small>share link : http://{{host}}/#/{{boards[board].name}}
+          <form ng-submit="addItem(board, boards, newItem)">
+            <input type="text" class="input-lg col-lg-12" placeholder="Type an idea. Press [ENTER]" ng-model="newItem" maxlength="40">
+          </form>
+          <br>
+          <ul class="list-unstyled">
+            <li ng-repeat = "item in boards[board].items | orderBy:'-vote'" id="itemlist-{{$index}}">
+              <div class="items" ng-class="{itemstop: $index < itemTop}">
+                <h4>{{$index + 1}}. {{item.name}} 
+                  <small class="pull-right">{{item.vote}}</small>
+
+                  <a  class="vote vote-down pull-right" ng-click="vote(-1,item, board, boards)">
+                    <i class=" vote glyphicon glyphicon-hand-down "></i>
+                  </a>
+                  <a  class="vote vote-up pull-right" ng-click="vote(1,item, board, boards)">
+                    <i class=" vote glyphicon glyphicon-hand-up "></i>
+                  </a>
+                </h4>
+              </div>
+            </li>
+
+          </ul>
+        </span>
+        <br>
+        <br>
+
+        Test : 1 + 2 = {{sum}}
+        </div>
+      </div>   
+              <br>
+	

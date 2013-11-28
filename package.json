@@ -1,0 +1,13 @@
+{
+  "name": "jSauce",
+  "version": "0.0.0",
+  "description": "an example of using sauceJs",
+  "private": true,
+  "author": "Stonly Baptiste",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.5"
+  }
+}
