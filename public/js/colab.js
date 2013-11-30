@@ -12,17 +12,13 @@
 
   	  function coLabCtrl($scope, angularFire, sauceJs, $routeParams, $location){
 
-  	  	$scope.host = $location.host();
-  	  	var lid = $routeParams.lid;
-  	  	if(lid){
-  	  		$scope.board = lid;
-  	  		$scope.boardName = lid;
-  	  	}
+
   	  	var z_ = function(args){ 
-  	  		return sauceJs('/sauce', $scope, [args.callee.name].concat(args));
+  	  		return sauceJs('/sauce', $scope, args);
   	  	};
 
   	  	var fB = new Firebase("https://lbd.firebaseIO.com/coLab");
+		$scope.host = $location.host();
   	  	$scope.itemTop = 5;
   	  	$scope.boards = {}
   	  	var promise = angularFire(fB, $scope, "boards");
@@ -46,4 +42,9 @@
           return z_(arguments);                
         }
 
+  	var lid = $routeParams.lid;
+  	  if(lid){
+  	    $scope.board = lid;
+  	    $scope.boardName = lid;
+  	  }
   }
