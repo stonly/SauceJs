@@ -1938,6 +1938,23 @@ angular.module("sauce", []).factory("sauceJs", ["$q", "$parse", "$timeout", "$ht
       return sjs._(scope, [args.callee.name].concat(args));
     };
   }
+]).factory("z_", ["sauceJs",
+  function(sauceJs) {
+    return {
+      _ : function(ref, args, scope) {
+           return sauceJs(ref, scope, args);
+      },
+      SecretSauce :  function(funS, scope){
+        for(var fuN in funS){
+            console.log(fuN)
+            console.log(funS[fuN])
+            var moreFun = "scope['"+funS[fuN]+"'] = function "+funS[fuN]+"(){ return sauceJs('/sauce', scope, arguments); }";
+            console.log(moreFun);
+            eval(moreFun);
+        }
+      }
+    };
+  }
 ]);
 
 // The `Sauce` object that implements implicit synchronization.
@@ -1958,8 +1975,8 @@ SauceJs.prototype = {
   _: function($scope, args) {
     var self = this;
     var processResp = function($scope, res){
-      Res[JSON.stringify(args)] = res;
-      Wait[JSON.stringify(args)] = false;
+      //Res[JSON.stringify(args)] = res;
+      //Wait[JSON.stringify(args)] = false;
       var ret;
       if(res.scope){
         for(var k in res.scope){
@@ -1977,15 +1994,32 @@ SauceJs.prototype = {
       return ret;
     }
 
-    var args2 = args;
+    var send_args = [args[0],[]];
+    for(var a in args[1]){
+        if(args[1][a] === '$SCOPE'){
+          var send_scope = {}
+          for(var k in $scope){
+            if( k.indexOf('$') < 0 &&  k != 'route_name' && k != 'title' && k != 'this' && k != 'Ia' && k != 'location' ){
+              if(typeof $scope[k] != 'function'){
+                send_scope[k] = $scope[k]
+              }
+            }
+          }
+          send_args[1].push(send_scope);
+        } else {
+          send_args[1].push(args[1][a]);
+        }
+    }
+    console.log(send_args)
+    /*
     if(self._stir(args[0], args2.slice(1) ) && !Wait[JSON.stringify(args)] ) {
       processResp($scope, Res[JSON.stringify(args)]);
       return;
-    }
+    }*/
 
     var deferred = this._q.defer();
-    Wait[JSON.stringify(args)] = true;
-    var run = this._http.post(this._hRef, args);
+    //Wait[JSON.stringify(args)] = true;
+    var run = this._http.post(this._hRef, send_args);
     run.success(function(resp){
       deferred.resolve(processResp($scope, resp));
     });
@@ -2033,7 +2067,6 @@ SauceJs1.prototype = {
       Res[JSON.stringify(args)] = res;
       Wait[JSON.stringify(args)] = false;
       var ret;
-      console.log(res);
       if(res.local){
         for(var k in res.local){
           window[k] = res.local[k];
@@ -2045,20 +2078,18 @@ SauceJs1.prototype = {
       if(res.val) {
         ret = res.val;
       }
-      console.log(ret)
       return ret;
     }
 
     var args2 = args;
-    console.log(args2)
-    if(self._stir(args[0], args2.slice(1) ) && !Wait[JSON.stringify(args)] ) {
+    /*if(self._stir(args[0], args2.slice(1) ) && !Wait[JSON.stringify(args)] ) {
         processResp(Res[JSON.stringify(args)]);
         return;
-    }
+    }*/
 
     var deferred = this._q.defer();
     var xmlhttp = new XMLHttpRequest();
-    Wait[JSON.stringify(args)] = true;
+    //Wait[JSON.stringify(args)] = true;
 
     xmlhttp.onreadystatechange=function()
     {
@@ -2091,8 +2122,11 @@ SauceJs1.prototype = {
         return true;
     }
 };
-var $z_ = function(args) {
-  var sjs = new SauceJs1('/sauce');
-    return sjs._([args.callee.name].concat(args));
-  }
+var $z_ = {
+    _ : function(args) {
+          var sjs = new SauceJs1('/sauce');
+          return sjs._([args.callee.name].concat(args));
+        },
+    SecretSauce : {}
+    }
 

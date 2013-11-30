@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="coLab">
+<html >
   <head>
   	  <meta charset="utf-8">
   	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,22 +15,153 @@
   <body >
   	<br>
   	<br>
-  	<div class="container" ng-view>
+  	<div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Finally! A way to hide your Javascript. <br>Introducing SauceJs.</h1>
+          <h3>SauceJs is a library and system for moving your javascript functions out of the client side and away from prying eyes.<br> SauceJs was inspired by Firebase and relies on the Q library for promise asynchronous callbacks to a NodeJS server.</h3>
+          <br>
+          <a class="btn btn-large btn-primary" href="https://github.com/stonly/SauceJs">
+              <i class="icon-github-sign"></i> View on GitHub
+            </a>
+          <br>
+          <h4>Benefits of SauceJs : </h4>
+          <ul class="">
+            <li>The secret sauce of your applications are no longer visible to the world.</li>
+            <li>The foot print of your client side code is dramatically reduced.</li>
+            <li>Your codebase can be converted with only small modifications.</li>
+            <li>SauceJs can be used from a non AngularJS application or as an AngularJS factory.</li>
+          </ul>
+          <div class="row">
+            <div class="col-lg-6" style="border-top:1px solid black; ">
+              <h4>Demo 1 </h4>
+              <h5>If the value of 'Test' is more than 0 and the "Status" is not 'waiting...', than SauceJs is working with your browser.
+              </h5>
+              <br>
+              <br>
+              <button class="btn btn-xs" onclick="test('test1',$('#test1').html());">Run</button><br>
+              <strong>Test</strong> = <span id="test1">0</span><br>
+              <strong>Status</strong> = <span id="status">waiting...</span>
+              <br>
+              <br>
+            </div>
+            <div class="col-lg-6" style="border-top:1px solid black;border-left:1px solid black; ">
+              <h4>Source</h4>
+              <h5>This is a really basic example but as you can see, the code does not rely on javascript and the semantics of the functions are not visible to you.
+              </h5>
+              <br>
+              <br>
+              <pre class="prettyprint language-js">
+var test = function test(){
+  z_._(arguments);
+}
+test('test1',$('#test1').html());
+              </pre>
+              <br>
+              <br>
+            </div>
+          </div>
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-lg-6" style="border-top:1px solid black; ">
+              <h4>Demo 2 </h4><h5>This is an example of SauceJs being used in AngularJs. It leverages an AI algorithm based on the strategy described here <a href="http://demo.ksankaran.com/tictactoe/index.html" target="_blank">http://demo.ksankaran.com/tictactoe/index.html</a></h5>
+              <br>
+              <br>
+              <div ng-app="tttApp" ng-controller="TicTacToeCntl">
+        <div ng-show="!isGameStarted" style="display: none;">
+            <button ng-click="startGame(rows, start, userLetter, systemLetter)" class="btn btn-xs btn-action">Start Game</button>
+        </div>
+        <div ng-show="gameover" style="display: none;">
+            <div>GAME OVER - {{winmessage}}</div><button ng-click="setup(); startGame(rows, start, userLetter, systemLetter)" class="btn btn-xs btn-warning">Start Over</button>
+        </div>
+        <table class="board">
+          <tr ng-repeat="row in rows" style="height:15px;">
+            <td ng-repeat="column in row" ng-style="cellStyle"
+              ng-click="markUserClick($index, $parent.$index, rows, turn, userLetter)">{{column.letter}}</td>
+          </tr>
+        </table>
+        Status : {{status}}
 
-  	</div>
+
+
+              </div>
+
+
+              <br>
+              <br>
+            </div>
+            <div class="col-lg-6" style="border-top:1px solid black;border-left:1px solid black; ">
+              <h4>Source</h4>
+              <h5>
+                The source below (or in this documents source) will not help you figure out how 
+              the AI in this tic tac toe is soo good at beating you.
+              </h5>
+              <br>
+              <br>
+              <pre class="prettyprint language-js">
+var ttt = angular.module('tttApp', ['sauce']);
+function TicTacToeCntl($scope, z_) {
+
+  (function setup(){
+    return z_._('/sauce',arguments,$scope);
+  })();
+
+  z_.SecretSauce(['markUserClick', 'markTheOne', 'fillTheEmptySpot', 'isCornerSpot', 'getInFork',
+              'targetCorner', 'playAtEmptySpot', 'checkWin', 'checkDraw', 'setUserTurn', 
+              'think', 'startGame','test2'], $scope);
+  $scope.test2();
+};
+              </pre>
+              <br>
+              <br>
+            </div>
+          </div>          
+          <h4>Other SauceJs Demos: </h4>
+          <ul class="list-unstyled">
+            <li><a href="/colab.html#/">coLab</a> : A collaborative list and ranking board.</li>
+        </div>
+        <br><br>
+      </div>
+      <br><br>
+      <div calss="row"> Please excuse the 'pre' level of this demo page and the SauceJs library. I just put it together over the Thanksgiving weekend as a personal challenge to find a new way to make javascript code more secure and private. If you have any questions or comments, reach out here : , or via twitter. <br>
+      <a href="http://twitter.com/StonlyBaptiste" target="_blank">@StonlyBaptiste</a> </div>
+    </div>
+    <br><br>
     <footer>
-    	<a href="http://twitter.com/StonlyBaptiste" target="_blank">@StonlyBaptiste</a> - Best viewed in Chrome.
+         Best viewed in Chrome.
     </footer>
 
-
-  	<script type="text/javascript" src="lib/jquery.js"></script>
-  	<script type="text/javascript" src="lib/prettify.js"></script>
-  	<script type="text/javascript" src="js/angular-1.1.5.js"></script>
-  	<script src="http://cdn.firebase.com/v0/firebase.js"></script>
-	  <script src="http://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/prettify.js"></script> 
+    <script type="text/javascript" src="js/angular-1.1.5.js"></script>       
     <script type="text/javascript" src="lib/saucejs.js"></script>
-    <script type="text/javascript" src="js/colab.js"></script>
+    <script>
+      var test = function test(){
+        $z_._(arguments);
+      }
+      test('test1',$('#test1').html());
+    </script>
+    <script>
+    var ttt = angular.module('tttApp', ['sauce']);
+    function TicTacToeCntl($scope, z_) {
 
+      (function setup(){
+        return z_._('/sauce',arguments,$scope);
+      })().then(
+          function(d){
+            console.log('done');
+            $scope.startGame($scope.rows, $scope.start, $scope.userLetter, $scope.systemLetter);
+          }
+      );
+
+      z_.SecretSauce(['markUserClick', 'markTheOne', 'fillTheEmptySpot', 'isCornerSpot', 'getInFork',
+                  'targetCorner', 'playAtEmptySpot', 'checkWin', 'checkDraw', 'setUserTurn', 
+                  'think', 'startGame','test2', 'setup'], $scope)
+      $scope.test2();
+      
+
+    };
+    </script>
   </body>
  </html>			
 

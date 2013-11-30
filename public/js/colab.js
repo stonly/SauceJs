@@ -10,12 +10,7 @@
   		});
 
 
-  	  function coLabCtrl($scope, angularFire, sauceJs, $routeParams, $location){
-
-
-  	  	var z_ = function(args){ 
-  	  		return sauceJs('/sauce', $scope, args);
-  	  	};
+  	  function coLabCtrl($scope, angularFire, z_, $routeParams, $location){
 
   	  	var fB = new Firebase("https://lbd.firebaseIO.com/coLab");
 		$scope.host = $location.host();
@@ -30,16 +25,16 @@
 
 
         $scope.loadBoard = function loadBoard(){
-          return z_(arguments);
+          return z_('/sauce',arguments,$scope);
         }
   	$scope.addItem = function addItem(){
-  	  return z_(arguments);
+  	  return z_('/sauce',arguments,$scope);
   	}
   	$scope.clearBoard = function clearBoard(){
-          return z_(arguments);
+          return z_('/sauce',arguments,$scope);
         }
   	$scope.vote = function vote(){
-          return z_(arguments);                
+          return z_('/sauce',arguments,$scope);                
         }
 
   	var lid = $routeParams.lid;
