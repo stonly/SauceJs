@@ -25,16 +25,16 @@
 
 
         $scope.loadBoard = function loadBoard(){
-          return z_('/sauce',arguments,$scope);
+          return z_._('/sauce',arguments,$scope);
         }
   	$scope.addItem = function addItem(){
-  	  return z_('/sauce',arguments,$scope);
+  	  return z_._('/sauce',arguments,$scope);
   	}
   	$scope.clearBoard = function clearBoard(){
-          return z_('/sauce',arguments,$scope);
+          return z_._('/sauce',arguments,$scope);
         }
   	$scope.vote = function vote(){
-          return z_('/sauce',arguments,$scope);                
+          return z_._('/sauce',arguments,$scope);                
         }
 
   	var lid = $routeParams.lid;

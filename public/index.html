@@ -102,10 +102,14 @@ test('test1',$('#test1').html());
 var ttt = angular.module('tttApp', ['sauce']);
 function TicTacToeCntl($scope, z_) {
 
+  // You can access SauceJs by using the z_._() function, for 
+  // individual functions, or z_._SecretSauce() for a list of 
+  // functions.
+
   (function setup(){
     return z_._('/sauce',arguments,$scope);
   })();
-
+  
   z_.SecretSauce(['markUserClick', 'markTheOne', 'fillTheEmptySpot', 'isCornerSpot', 'getInFork',
               'targetCorner', 'playAtEmptySpot', 'checkWin', 'checkDraw', 'setUserTurn', 
               'think', 'startGame','test2'], $scope);
