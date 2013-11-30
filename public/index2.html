@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="coLab">
+  <head>
+  	  <meta charset="utf-8">
+  	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="">
+      <meta name="author" content="">
+  	  
+  	  <title>SauceJs Demo</title>
+  	  <link rel="stylesheet" href="css/bootstrap.css" />
+      <link rel="stylesheet" href="css/colab.css" />
+      <link rel="stylesheet" href="lib/prettify.css" />
+  	  
+  </head>
+  <body >
+  	<br>
+  	<br>
+  	<div class="container" ng-view>
+          Test = <span id="test1">0</span><br>
+          Status = <span id="status">waiting...</span>
+  	</div>
+    <footer>
+    	<a href="http://twitter.com/StonlyBaptiste" target="_blank">@StonlyBaptiste</a> - Best viewed in Chrome.
+    </footer>
+
+
+    <script type="text/javascript" src="lib/saucejs.js"></script>
+    <script type="text/javascript" src="lib/q.js"></script>
+    <script>
+      var test1Span = document.getElementById('test1');
+      var test1 = test1Span.innerHTML;
+      console.log("value of test1 : ",test1);
+      var test = function test(){
+        $z_(arguments).then( function(o){
+          document.getElementById('status').innerHTML = o;
+        });;
+      }
+      test()
+    </script>
+  </body>
+ </html>			
+
+

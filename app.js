@@ -52,6 +52,7 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 var processReq = function(r){
+ console.log(r);
   var fun = r[0];
   var args = toArray(r.splice(1)[0]);
   return have[fun].apply(this, args)

@@ -1,6 +1,7 @@
 exports.have = {
   test : function(a){
-          return { val: 1, scope : {test : 1 }, exec : "alert('test')" } ;
+          var exec = "document.getElementById('test1').innerHTML = 1";
+          return { val: 'success', scope : {test : 1 }, exec : exec, local : {test1 : 1 } } ;
         },
   sum : function(a,b){
           return { val : a + b }
