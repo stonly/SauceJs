@@ -47,7 +47,7 @@
             </div>
             <div class="col-lg-6" style="border-top:1px solid black;border-left:1px solid black; ">
               <h4>Source</h4>
-              <h5>This is a really basic example but as you can see, the code does not rely on javascript and the semantics of the functions are not visible to you.
+              <h5>This is a really basic example but as you can see, the code does not rely on AngularJS and the semantics of the functions are not visible to you.
               </h5>
               <br>
               <br>
@@ -110,7 +110,7 @@ function TicTacToeCntl($scope, z_) {
     return z_._('/sauce',arguments,$scope);
   })();
   
-  z_.SecretSauce(['markUserClick', 'markTheOne', 'fillTheEmptySpot', 'isCornerSpot', 'getInFork',
+  z_.SecretSauce('/sauce',['markUserClick', 'markTheOne', 'fillTheEmptySpot', 'isCornerSpot', 'getInFork',
               'targetCorner', 'playAtEmptySpot', 'checkWin', 'checkDraw', 'setUserTurn', 
               'think', 'startGame','test2'], $scope);
   $scope.test2();
@@ -158,7 +158,7 @@ function TicTacToeCntl($scope, z_) {
           }
       );
 
-      z_.SecretSauce(['markUserClick', 'markTheOne', 'fillTheEmptySpot', 'isCornerSpot', 'getInFork',
+      z_.SecretSauce('/sauce',['markUserClick', 'markTheOne', 'fillTheEmptySpot', 'isCornerSpot', 'getInFork',
                   'targetCorner', 'playAtEmptySpot', 'checkWin', 'checkDraw', 'setUserTurn', 
                   'think', 'startGame','test2', 'setup'], $scope)
       $scope.test2();

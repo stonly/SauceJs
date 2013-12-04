@@ -1944,11 +1944,14 @@ angular.module("sauce", []).factory("sauceJs", ["$q", "$parse", "$timeout", "$ht
       _ : function(ref, args, scope) {
            return sauceJs(ref, scope, args);
       },
-      SecretSauce :  function(funS, scope){
+      SecretSauce :  function(ref, funS, scope){
+        if(!ref){
+            var ref = '/sauce'
+        }
         for(var fuN in funS){
             console.log(fuN)
             console.log(funS[fuN])
-            var moreFun = "scope['"+funS[fuN]+"'] = function "+funS[fuN]+"(){ return sauceJs('/sauce', scope, arguments); }";
+            var moreFun = "scope['"+funS[fuN]+"'] = function "+funS[fuN]+"(){ return sauceJs('"+ref+"', scope, arguments); }";
             console.log(moreFun);
             eval(moreFun);
         }
